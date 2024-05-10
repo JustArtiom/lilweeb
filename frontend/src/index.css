@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: rgb(34, 34, 34);
+}
+
+:root {
+  /* Define variables */
+  --primary-color: #f0f0f0;
+  --secondary-color: #7e7e7e;
+}
+
+/* Hide scrollbar for all elements */
+::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* For Internet Explorer, Edge */
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* For Firefox */
+body {
+  scrollbar-width: none; /* Firefox */
+}

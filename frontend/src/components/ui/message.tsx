@@ -1,19 +1,30 @@
-import { ReactNode } from "react";
+import { cn } from "@/lib/utils";
+import { VariantProps, cva } from "class-variance-authority";
+import { type PropsWithChildren } from "react";
 
-const Message = ({ children, you }: { children: ReactNode; you?: boolean }) => {
+const messageVariants = cva(
+  "flex rounded-lg rounded-xl p-4 text-white max-w-[min(80%,32rem)]",
+  {
+    variants: {
+      variant: {
+        default: "mr-auto bg-[#191919]",
+        user: "ml-auto bg-[#343434]",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+);
+
+interface MessageProps
+  extends PropsWithChildren,
+    VariantProps<typeof messageVariants> {}
+
+const Message = ({ children, variant }: MessageProps) => {
   return (
-    <div
-      className={`w-full flex`}
-      style={{ justifyContent: you ? "flex-start" : "flex-end" }}
-    >
-      <p
-        className={`bg-[#343534] rounded-xl m-2 p-4 text-white inline-block w-[90%] max-w-[700px]`}
-        style={{
-          borderRadius: you ? "16px 16px 16px 0px" : "16px 16px 0px 16px",
-        }}
-      >
-        {children}
-      </p>
+    <div className={cn(messageVariants({ variant }))}>
+      <p className="inline-block ">{children}</p>
     </div>
   );
 };
